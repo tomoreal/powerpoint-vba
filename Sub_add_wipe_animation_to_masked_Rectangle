@@ -1,6 +1,8 @@
-Sub add_wipe_animation_to_masked_Rectangle()
+Sub マスクにアニメを一括追加()
 'マスクした図形にワイプアニメーションを一括でつけるマクロ
-'vba add wipe animation for maskes Rectangle
+'教えて！goo >パワーポイントのアニメーション設定について
+'http://oshiete.goo.ne.jp/qa/5240351.html
+'を改変した。
 ' by Makoto Tomo 2015/08/04
 
 Dim objSlide As Slide
@@ -10,7 +12,7 @@ For Each objSlide In ActivePresentation.Slides
     With objSlide
         For Each objShape In .Shapes
             With objShape
-                If .TextFrame.HasText = False And .Name Like "*Rectangle*" Then
+                If .TextFrame.HasText = False And (.Name Like "*Rectangle*" Or .Name Like "*メモ*") Then
                     With objSlide.TimeLine.InteractiveSequences.Add.AddEffect( _
                                 Shape:=objShape, _
                                 effectId:=msoAnimEffectWipe, _
